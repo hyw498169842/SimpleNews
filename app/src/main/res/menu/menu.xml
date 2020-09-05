@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="新闻"
+        android:id="@+id/item_news" />
+    <item
+        android:title="疫情"
+        android:id="@+id/item_covid"/>
+    <item
+        android:title="用户"
+        android:id="@+id/item_user" />
+</menu>

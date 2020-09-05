@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fl_root"
+    >
+    <!--the header or footer will be added here-->
+    <com.blcodes.views.refresh.BounceLayout
+        android:id="@+id/bl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee"
+        >
+        <ScrollView
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:scrollbars="vertical"
+            android:id="@+id/scroll_view">
+            <LinearLayout
+                android:id="@+id/news_all_layout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </com.blcodes.views.refresh.BounceLayout>
+</FrameLayout>
