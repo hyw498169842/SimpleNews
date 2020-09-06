@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".NewsDetailActivity">
+
+    <!--orderInCategory菜单项的优先级，也就是顺序，只能设置正整数，数值越大菜单项越靠前-->
+    <item
+        android:id="@+id/collect_button"
+        android:orderInCategory="100"
+        android:title="收藏"
+        android:icon="@drawable/collect_button"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/share_button"
+        android:orderInCategory="100"
+        android:title="分享"
+        android:icon="@drawable/share_button"
+        app:showAsAction="ifRoom"/>
+</menu>

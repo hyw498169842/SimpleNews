@@ -70,6 +70,9 @@ public class NewsLayout extends LinearLayout {
 
         TextView typeView = new TextView(context);
         typeView.setText(type);
+        if(type.equals("news")) {
+            typeView.setText(sourceString);
+        }
         RelativeLayout.LayoutParams typeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         typeParams.addRule(RelativeLayout.BELOW, 1);
         typeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
