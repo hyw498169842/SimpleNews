@@ -100,8 +100,6 @@ public class CovidGraphFragment extends Fragment {
 			}
 		});
 
-
-
 		try {
 			JSONArray jsonArray = new JSONArray(readJson());
 			for(int i = 0; i < jsonArray.length(); i++) {
@@ -185,5 +183,4 @@ public class CovidGraphFragment extends Fragment {
 			((ViewGroup)savedView.getParent()).removeView(savedView);
 		}
 	}
-
 }

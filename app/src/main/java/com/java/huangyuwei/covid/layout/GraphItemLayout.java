@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.java.huangyuwei.GraphDetailActivity;
+import com.java.huangyuwei.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +65,7 @@ public class GraphItemLayout extends LinearLayout {
 				bundle.putCharSequence("properties", properties.toString());
 				bundle.putCharSequence("relations", relations.toString());
 				intent.putExtras(bundle);
-				context.startActivity(intent);
+				((MainActivity) context).startActivityForResult(intent, 1);
 			}
 		});
 	}

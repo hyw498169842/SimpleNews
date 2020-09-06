@@ -1,11 +1,14 @@
 package com.java.huangyuwei;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -18,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
 	private NewsFragment newsFragment;
 	private CovidFragment covidFragment;
 	private UserFragment userFragment;
-	private Thread mainThreadHandler;
+
+
 	private void checkNeedPermissions(){
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 			!= PackageManager.PERMISSION_GRANTED
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 			}, 1);
 		}
 	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,5 +66,14 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 		checkNeedPermissions();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == 1 && resultCode == 1) {
+			SearchView searchView = findViewById(R.id.search_view);
+			searchView.setQuery(data.getStringExtra("entity"), true);
+		}
 	}
 }

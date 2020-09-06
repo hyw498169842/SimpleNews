@@ -1,9 +1,14 @@
 package com.java.huangyuwei;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,6 +123,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 				relationStart.setLayoutParams(relationParams);
 				layout.addView(relationStart);
 				// 各关系值
+				GridLayout gridLayout = new GridLayout(this);
 				for(int i = 0; i < relations.length(); i++) {
 					// 获取所需信息
 					JSONObject currentObject = relations.getJSONObject(i);
@@ -125,40 +132,57 @@ public class GraphDetailActivity extends AppCompatActivity {
 					boolean forward = currentObject.getBoolean("forward");
 					// 关系文本框
 					TextView relationText = new TextView(this);
+					relationText.setMaxEms(10);
 					relationText.setText(relation);
 					relationText.setTextSize(20);
-					relationText.setGravity(Gravity.START);
 					relationText.setTextColor(Color.rgb(128, 128, 128));
+					relationText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+					GridLayout.LayoutParams relationTextParams = new GridLayout.LayoutParams(
+						GridLayout.spec(i, GridLayout.CENTER), GridLayout.spec(0, GridLayout.CENTER, 1));
+					relationTextParams.setMargins(0, 0, 0, 50);
+					relationText.setLayoutParams(relationTextParams);
+					gridLayout.addView(relationText);
 					// 图片箭头
 					ImageView imageView = new ImageView(this);
 					imageView.setImageResource(forward ? R.drawable.right: R.drawable.left);
 					imageView.setAdjustViewBounds(true);
-					imageView.setMaxHeight(40);
+					imageView.setMaxHeight(80);
+					GridLayout.LayoutParams imageViewParams = new GridLayout.LayoutParams(
+						GridLayout.spec(i, GridLayout.CENTER), GridLayout.spec(1, GridLayout.CENTER, 1));
+					imageViewParams.setMargins(0, 0, 0, 50);
+					imageView.setLayoutParams(imageViewParams);
+					gridLayout.addView(imageView);
 					// 标签文本框
-					TextView labelText = new TextView(this);
+					final TextView labelText = new TextView(this);
+					labelText.setMaxEms(10);
 					labelText.setText(label);
 					labelText.setTextSize(20);
-					labelText.setGravity(Gravity.END);
+					labelText.getPaint().setAntiAlias(true);
 					labelText.getPaint().setFakeBoldText(true);
-					// 设置layout参数
-					RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-					relationText.setLayoutParams(params);
-					imageView.setLayoutParams(params);
-					labelText.setLayoutParams(params);
-					// 加入表格布局，然后加入界面
-					RelativeLayout subLayout = new RelativeLayout(this);
-					subLayout.addView(relationText);
-					subLayout.addView(labelText);
-					subLayout.addView(imageView);
-					LinearLayout.LayoutParams subLayoutParams = new LinearLayout.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-					subLayoutParams.setMargins(50, 20, 50, 0);
-					subLayout.setLayoutParams(subLayoutParams);
-					layout.addView(subLayout);
+					labelText.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+					labelText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+					GridLayout.LayoutParams labelTextParams = new GridLayout.LayoutParams(
+						GridLayout.spec(i, GridLayout.CENTER), GridLayout.spec(2, GridLayout.CENTER, 1));
+					labelTextParams.setMargins(0, 0, 0, 50);
+					labelText.setLayoutParams(labelTextParams);
+					gridLayout.addView(labelText);
+					// 监听标签点击事件
+					labelText.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							Intent request = new Intent();
+							request.putExtra("entity", labelText.getText());
+							setResult(1, request);
+							finish();
+						}
+					});
 				}
+				LinearLayout.LayoutParams gridLayoutParams = new LinearLayout.LayoutParams(
+					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+				gridLayoutParams.setMargins(50, 20, 50, 0);
+				gridLayout.setLayoutParams(gridLayoutParams);
+				layout.addView(gridLayout);
 			}
-
 		} catch (JSONException | NullPointerException e) {
 			e.printStackTrace();
 		}
