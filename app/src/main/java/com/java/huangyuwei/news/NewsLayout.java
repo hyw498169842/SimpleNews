@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 
 import com.java.huangyuwei.NewsDetailActivity;
 import com.java.huangyuwei.R;
+import com.java.huangyuwei.news.newssaver.News;
+import com.java.huangyuwei.news.newssaver.News2Json;
 
 public class NewsLayout extends LinearLayout {
+    public TextView contentView;
     @SuppressLint("ResourceType")
     public NewsLayout(final Context context, final String titleString, String textString, final String date, final String type, final String sourceString) {
         super(context);
@@ -38,7 +42,7 @@ public class NewsLayout extends LinearLayout {
         infoLayout.setLayoutParams(infoParams);
         final String finalTextString = textString;
 
-        final TextView contentView = new TextView(context);
+        contentView = new TextView(context);
         if(textString.equals("")) {
             if(type.equals("event")) {
                 textString = "Attend this event!";
@@ -70,6 +74,9 @@ public class NewsLayout extends LinearLayout {
 
         TextView typeView = new TextView(context);
         typeView.setText(type);
+        if(type.equals("news")) {
+            typeView.setText(sourceString);
+        }
         RelativeLayout.LayoutParams typeParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         typeParams.addRule(RelativeLayout.BELOW, 1);
         typeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -81,12 +88,19 @@ public class NewsLayout extends LinearLayout {
 
         addView(infoLayout);
 
-
+        final NewsLayout _this = this;
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 // NewsDetailActivity
                 if(type.equals("news") || type.equals("paper")) {
+                    _this.setBackgroundColor(Color.rgb(0xf4,0xf6,0xf8));
+                    News news = new News();
+                    news.setTitle(titleString);
+                    news.setContent(finalTextString);
+                    news.setDate(date);
+                    news.setSource(sourceString);
+                    News2Json.addNews(context.getFilesDir().getPath(), news);
                     Intent intent = new Intent(context, NewsDetailActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putCharSequence("title", titleString);

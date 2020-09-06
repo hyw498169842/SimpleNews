@@ -3,6 +3,8 @@ package com.java.huangyuwei.news.newsparser;
 import android.os.Handler;
 import android.os.Message;
 
+import java.io.IOException;
+
 public class Server extends Thread {
     static int page = 0;
     protected String type;
@@ -12,7 +14,15 @@ public class Server extends Thread {
         super.run();
         JsonParser jParser = new JsonParser();
         page++;
-        String[][] newsList = jParser.getNNews(page, type);
+        String[][] newsList = new String[0][];
+        try {
+            newsList = jParser.getNNews(page, type);
+        } catch (IOException e) {
+            Message msg = new Message();
+            msg.what = 2;
+            mainThreadHandler.sendMessage(msg);
+            return;
+        }
         Message message = new Message();
         message.obj = newsList;
         message.what = 0;
