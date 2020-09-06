@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 	private NewsFragment newsFragment;
 	private CovidFragment covidFragment;
 	private UserFragment userFragment;
-	private Thread mainThreadHandler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

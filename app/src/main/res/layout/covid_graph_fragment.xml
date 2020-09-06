@@ -4,14 +4,45 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/feeling_lucky"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:queryHint="你想了解什么呢"
+        android:iconifiedByDefault="false"
+        android:layout_margin="10dp"
+        android:focusable="true"/>
+
+    <Button
+        android:id="@+id/feeling_lucky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is covid graph fragment"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/search_view"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/button_shape"
+        android:layout_margin="10dp"
+        android:textColor="#505050"
+        android:text="手气不错" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:id="@+id/graph_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

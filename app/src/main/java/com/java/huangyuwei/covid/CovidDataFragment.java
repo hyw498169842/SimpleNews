@@ -104,7 +104,6 @@ public class CovidDataFragment extends Fragment {
 				Objects.requireNonNull(beginDate.get(currentKey)), startDate, finishDate, type);
 		} catch (NullPointerException e) {
 			chartInitialized = false;
-			e.printStackTrace();
 		}
 	}
 
@@ -138,7 +137,7 @@ public class CovidDataFragment extends Fragment {
 
 		savedView = inflater.inflate(R.layout.covid_data_fragment, container, false);
 		// show loading dialog
-		dialog = new LoadingDialog(getActivity());
+		dialog = new LoadingDialog(savedActivity);
 		dialog.setLoadingText("加载疫情数据中，请稍候").show();
 		// use handler to handle callback message
 		handler = new Handler(new Handler.Callback() {
@@ -172,7 +171,7 @@ public class CovidDataFragment extends Fragment {
 			}
 		}.start();
 		// initialize the OptionsPickerView
-		options = new OptionsPickerBuilder(getActivity(), new OnOptionsSelectListener() {
+		options = new OptionsPickerBuilder(savedActivity, new OnOptionsSelectListener() {
 			@Override
 			public void onOptionsSelect(int op1, int op2, int op3, View v) {
 				if(optionCountries.isEmpty()) return;
@@ -182,7 +181,7 @@ public class CovidDataFragment extends Fragment {
 		}).build();
 		options.setTitleText("请选择地区");
 		// initialize the button
-		Button button_choose = savedView.findViewById(R.id.button);
+		Button button_choose = savedView.findViewById(R.id.button_choose);
 		button_choose.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
