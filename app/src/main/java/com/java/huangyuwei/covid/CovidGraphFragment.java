@@ -74,18 +74,22 @@ public class CovidGraphFragment extends Fragment {
 			@Override
 			public boolean handleMessage(@NonNull Message message) {
 				if(message.what == 1) {
-					ArrayList<String[]> info = (ArrayList<String[]>) message.obj;
+					ArrayList<JSONObject> dataList = (ArrayList<JSONObject>) message.obj;
 					LinearLayout layout = savedView.findViewById(R.id.graph_linear_layout);
 					layout.removeAllViews();
-					for(String[] itemInfo: info) {
-						GraphItemLayout newLayout = new GraphItemLayout(savedActivity, itemInfo[0], itemInfo[1]);
-						LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-							LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-						params.setMargins(10, 10 , 10 , 10);
-						newLayout.setLayoutParams(params);
-						layout.addView(newLayout);
+					for(JSONObject data: dataList) {
+						try {
+							GraphItemLayout newLayout = new GraphItemLayout(savedActivity, data);
+							LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+								LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+							params.setMargins(10, 10 , 10 , 10);
+							newLayout.setLayoutParams(params);
+							layout.addView(newLayout);
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
 					}
-					if(info.size() == 0) {
+					if(dataList.size() == 0) {
 						TextView noItemText = new TextView(savedActivity);
 						noItemText.setText("很抱歉，没有找到相关内容，请换个关键词再试吧。");
 						noItemText.setTextSize(15);
@@ -95,6 +99,8 @@ public class CovidGraphFragment extends Fragment {
 				return true;
 			}
 		});
+
+
 
 		try {
 			JSONArray jsonArray = new JSONArray(readJson());
@@ -117,22 +123,15 @@ public class CovidGraphFragment extends Fragment {
 							while(selectedIndex.size() < RANDOM_ITEM_COUNT) {
 								selectedIndex.add(new Random().nextInt(entities.size()));
 							}
-							ArrayList<String[]> info = new ArrayList<>();
+							ArrayList<JSONObject> dataList = new ArrayList<>();
 							for(Integer index: selectedIndex) {
-								String[] currentInfo = new String[2];
-								currentInfo[0] = entities.get(index);
-								JSONObject object = new JSONObject(UrlContentReader.getContent(url + currentInfo[0]));
-								JSONObject abstractInfo = object.getJSONArray("data")
-									.getJSONObject(0)
-									.getJSONObject("abstractInfo");
-								currentInfo[1] = abstractInfo.getString("enwiki") +
-									abstractInfo.getString("baidu") +
-									abstractInfo.getString("zhwiki");
-								info.add(currentInfo);
+								String entity = entities.get(index);
+								JSONObject object = new JSONObject(UrlContentReader.getContent(url + entity));
+								dataList.add(object.getJSONArray("data").getJSONObject(0));
 							}
 							Message message = new Message();
 							message.what = 1;
-							message.obj = info;
+							message.obj = dataList;
 							handler.sendMessage(message);
 						} catch(IOException | JSONException e) {
 							e.printStackTrace();
@@ -152,20 +151,13 @@ public class CovidGraphFragment extends Fragment {
 						try {
 							JSONObject object = new JSONObject(UrlContentReader.getContent(url + s));
 							JSONArray data = object.getJSONArray("data");
-							ArrayList<String[]> info = new ArrayList<>();
+							ArrayList<JSONObject> dataList = new ArrayList<>();
 							for(int i = 0; i < data.length(); i++) {
-								String[] currentInfo = new String[2];
-								JSONObject itemObject = data.getJSONObject(i);
-								currentInfo[0] = itemObject.getString("label");
-								JSONObject abstractInfo = itemObject.getJSONObject("abstractInfo");
-								currentInfo[1] = abstractInfo.getString("enwiki") +
-									abstractInfo.getString("baidu") +
-									abstractInfo.getString("zhwiki");
-								info.add(currentInfo);
+								dataList.add(data.getJSONObject(i));
 							}
 							Message message = new Message();
 							message.what = 1;
-							message.obj = info;
+							message.obj = dataList;
 							handler.sendMessage(message);
 						} catch (JSONException | IOException e) {
 							e.printStackTrace();

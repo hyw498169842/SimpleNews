@@ -1,10 +1,14 @@
 package com.java.huangyuwei;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,6 +19,18 @@ public class MainActivity extends AppCompatActivity {
 	private CovidFragment covidFragment;
 	private UserFragment userFragment;
 	private Thread mainThreadHandler;
+	private void checkNeedPermissions(){
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			!= PackageManager.PERMISSION_GRANTED
+			|| ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+			!= PackageManager.PERMISSION_GRANTED) {
+			//多个权限一起申请
+			ActivityCompat.requestPermissions(this, new String[]{
+				Manifest.permission.WRITE_EXTERNAL_STORAGE,
+				Manifest.permission.READ_EXTERNAL_STORAGE
+			}, 1);
+		}
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +60,6 @@ public class MainActivity extends AppCompatActivity {
 				return true;
 			}
 		});
-
+		checkNeedPermissions();
 	}
 }
