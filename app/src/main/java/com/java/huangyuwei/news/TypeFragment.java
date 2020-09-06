@@ -1,5 +1,6 @@
 package com.java.huangyuwei.news;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,6 +25,7 @@ import com.blcodes.views.refresh.header.DefaultHeader;
 import com.java.huangyuwei.R;
 import com.java.huangyuwei.news.newsparser.RefreshServer;
 import com.java.huangyuwei.news.newsparser.Server;
+import com.java.huangyuwei.news.newssaver.News2Json;
 
 
 public class TypeFragment extends Fragment {
@@ -60,8 +62,24 @@ public class TypeFragment extends Fragment {
                     layout.removeAllViews();
                 }
                 String[][] s = (String[][])msg.obj;
+                String[][] newsList = News2Json.getNewsList(getContext().getFilesDir().getPath());
+                if(msg.what == 2 && newsList != null) {
+                    s = newsList;
+                }
                 for(int i = 0; i < s.length; i++) {
                     NewsLayout newsLayout = new NewsLayout(_this.getContext(), s[i][0], s[i][1], s[i][2], s[i][3], s[i][4]);
+                    boolean read = false;
+                    if(newsList != null) {
+                        for (int j = 0; j < newsList.length; j++) {
+                            if (s[i][0].equals(newsList[j][0])) {
+                                read = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(read) {
+                        newsLayout.setBackgroundColor(Color.rgb(0xF4,0xF6,0xF8));
+                    }
                     LinearLayout.LayoutParams newsParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     newsParams.setMargins(25,15,25,15);
                     newsLayout.setLayoutParams(newsParams);

@@ -15,7 +15,7 @@ import java.net.URL;
 class JsonParser {
     final int N = 8;
     private BufferedReader bReader;
-    String[][] getNNews(int pageNum, String type){
+    String[][] getNNews(int pageNum, String type) throws IOException {
         String[][] nextNNews = new String[N][5];
         try {
             URL titleURL = new URL("https://covid-dashboard.aminer.cn/api/events/list?size=" + N + "&page=" + pageNum + "&type=" + type);
@@ -41,8 +41,6 @@ class JsonParser {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
         return nextNNews;
