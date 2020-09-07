@@ -109,9 +109,15 @@ public class NewsLayout extends LinearLayout {
                     bundle.putCharSequence("source", sourceString);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
-                }
-                else {
-                    setBackgroundColor(Color.rgb(0xFF,192,203));
+                } else if("You like this!".contentEquals(contentView.getText())) {
+                    setBackgroundColor(Color.rgb(255,255,255));
+                    if(type.equals("event")) {
+                        contentView.setText("Attend this event!");
+                    } else if(type.equals("points")) {
+                        contentView.setText("Check this point!");
+                    }
+                } else {
+                    setBackgroundColor(Color.rgb(0xFF, 192, 203));
                     contentView.setText("You like this!");
                 }
             }
