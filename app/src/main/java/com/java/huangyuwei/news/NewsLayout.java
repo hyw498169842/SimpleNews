@@ -93,7 +93,7 @@ public class NewsLayout extends LinearLayout {
             public void onClick(View view) {
                 // NewsDetailActivity
                 if(type.equals("news") || type.equals("paper")) {
-                    _this.setBackgroundColor(Color.rgb(0xf4,0xf6,0xf8));
+                    _this.setBackgroundColor(Color.rgb(0xd0,0xd0,0xd0));
                     News news = new News();
                     news.setTitle(titleString);
                     news.setContent(finalTextString);
