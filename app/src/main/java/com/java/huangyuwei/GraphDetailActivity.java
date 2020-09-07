@@ -54,6 +54,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 			TextView entityTitle = new TextView(this);
 			entityTitle.setText(title);
 			entityTitle.setTextSize(40);
+			entityTitle.setTextColor(Color.DKGRAY);
 			entityTitle.getPaint().setFakeBoldText(true);
 			// 实体热度
 			TextView entityType = new TextView(this);
@@ -82,6 +83,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 				TextView propertyStart = new TextView(this);
 				propertyStart.setText("属性");
 				propertyStart.setTextSize(30);
+				propertyStart.setTextColor(Color.DKGRAY);
 				propertyStart.getPaint().setFakeBoldText(true);
 				LinearLayout.LayoutParams propertyParams = new LinearLayout.LayoutParams(
 					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -110,6 +112,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 				TextView relationStart = new TextView(this);
 				relationStart.setText("关系");
 				relationStart.setTextSize(30);
+				relationStart.setTextColor(Color.DKGRAY);
 				relationStart.getPaint().setFakeBoldText(true);
 				LinearLayout.LayoutParams relationParams = new LinearLayout.LayoutParams(
 					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -151,6 +154,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 					labelText.setMaxEms(10);
 					labelText.setText(label);
 					labelText.setTextSize(20);
+					labelText.setTextColor(Color.DKGRAY);
 					labelText.getPaint().setAntiAlias(true);
 					labelText.getPaint().setFakeBoldText(true);
 					labelText.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);

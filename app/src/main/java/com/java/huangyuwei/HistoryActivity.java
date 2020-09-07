@@ -34,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
         if(s != null) {
             for (String[] strings : s) {
                 NewsLayout newsLayout = new NewsLayout(this, strings[0], strings[1], strings[2], strings[3], strings[4]);
-                newsLayout.setBackgroundColor(Color.rgb(0xF4, 0xF6, 0xF8));
+                newsLayout.setBackgroundColor(Color.rgb(0xe0, 0xe0, 0xe0));
                 LinearLayout.LayoutParams newsParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 newsParams.setMargins(25, 15, 25, 15);
                 newsLayout.setLayoutParams(newsParams);

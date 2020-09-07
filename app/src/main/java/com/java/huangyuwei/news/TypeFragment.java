@@ -78,7 +78,7 @@ public class TypeFragment extends Fragment {
                         }
                     }
                     if(read) {
-                        newsLayout.setBackgroundColor(Color.rgb(0xF4,0xF6,0xF8));
+                        newsLayout.setBackgroundColor(Color.rgb(0xe0,0xe0,0xe0));
                     }
                     LinearLayout.LayoutParams newsParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     newsParams.setMargins(25,15,25,15);

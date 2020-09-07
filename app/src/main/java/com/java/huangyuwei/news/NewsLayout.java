@@ -54,10 +54,10 @@ public class NewsLayout extends LinearLayout {
             textString = textString.substring(0, 50);
         }
         contentView.setText(textString);
-        LayoutParams contentparams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams contentParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         contentView.setTextColor(Color.rgb(0x6e,0x9c,0xf9));
-        contentparams.setMargins(15,10,15,10);
-        contentView.setLayoutParams(contentparams);
+        contentParams.setMargins(15,10,15,10);
+        contentView.setLayoutParams(contentParams);
         infoLayout.addView(contentView);
         contentView.setId(1);
 
@@ -93,7 +93,7 @@ public class NewsLayout extends LinearLayout {
             public void onClick(View view) {
                 // NewsDetailActivity
                 if(type.equals("news") || type.equals("paper")) {
-                    _this.setBackgroundColor(Color.rgb(0xd0,0xd0,0xd0));
+                    _this.setBackgroundColor(Color.rgb(0xe0,0xe0,0xe0));
                     News news = new News();
                     news.setTitle(titleString);
                     news.setContent(finalTextString);

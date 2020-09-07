@@ -58,7 +58,7 @@ public class News2Json {
         String previous = readJson(filePath);
         if(!previous.contains(JSON.toJSONString(news))) {
             if(!previous.equals("")) {
-                save(filePath, previous.substring(0, previous.length() - 1) + "," + JSON.toJSONString(news) + "]");
+                save(filePath, "[" + JSON.toJSONString(news) + "," + previous.substring(1, previous.length()));
             } else {
                 save(filePath, "[" + JSON.toJSONString(news) + "]");
             }

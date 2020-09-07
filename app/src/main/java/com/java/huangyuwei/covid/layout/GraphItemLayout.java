@@ -39,6 +39,7 @@ public class GraphItemLayout extends LinearLayout {
 		TextView entityTitle = new TextView(context);
 		entityTitle.setText(entity);
 		entityTitle.setTextSize(20);
+		entityTitle.setTextColor(Color.DKGRAY);
 		entityTitle.getPaint().setFakeBoldText(true);
 
 		TextView entityDescription = new TextView(context);
