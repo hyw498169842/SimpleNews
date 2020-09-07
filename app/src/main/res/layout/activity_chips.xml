@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:chipSpacingHorizontal="500sp"
+        android:paddingVertical="20sp"
+        android:paddingHorizontal="20sp"
+        app:chipSpacingVertical="20sp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="选择新闻页标签："
+            android:textSize="40sp"
+            android:textColor="#000000"/>
+
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chip_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ALL"
+            android:textSize="40sp"
+            android:textColor="#000000"
+            android:checked="true"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chip_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EVENT"
+            android:textSize="40sp"
+            android:textColor="#000000"
+            android:checked="true"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chip_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="POINTS"
+            android:textSize="40sp"
+            android:textColor="#000000"
+            android:checked="true"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chip_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEWS"
+            android:textSize="40sp"
+            android:textColor="#000000"
+            android:checked="true"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/chip_paper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAPER"
+            android:textSize="40sp"
+            android:textColor="#000000"
+            android:checked="true"/>
+    </com.google.android.material.chip.ChipGroup>
+</LinearLayout>

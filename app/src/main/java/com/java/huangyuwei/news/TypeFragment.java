@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,6 +53,7 @@ public class TypeFragment extends Fragment {
                 return true;
             }
         });
+
 
         final LinearLayout layout = (LinearLayout)view.findViewById(R.id.news_list_layout);
         final TypeFragment _this = this;

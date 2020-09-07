@@ -6,13 +6,44 @@
     android:id="@+id/newsFrame"
     android:orientation="vertical"
     android:background="#F4F6F8">
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/news_tab"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/design_default_color_background">
-    </com.google.android.material.tabs.TabLayout>
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#FFFFFF"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="新闻搜索"
+            app:titleTextColor="#000000"
+            app:subtitleTextColor="#000000"
+            app:navigationIcon="@mipmap/sbutton"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/news_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabMode="scrollable"
+            android:background="@color/design_default_color_background">
+        </com.google.android.material.tabs.TabLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/more_button"
+            android:id="@+id/more_icon"/>
+
+    </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/news_pager"
