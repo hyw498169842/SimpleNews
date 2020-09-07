@@ -1,28 +1,28 @@
 package com.java.huangyuwei;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.java.huangyuwei.covid.bean.GraphItemBean;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
-import java.util.Objects;
 
 public class GraphDetailActivity extends AppCompatActivity {
 	@Override
@@ -40,12 +40,12 @@ public class GraphDetailActivity extends AppCompatActivity {
 		});
 
 		try {
-			Bundle bundle = getIntent().getExtras();
-			double hot = Objects.requireNonNull(bundle).getDouble("hot");
-			String title = bundle.getString("title");
-			String description = bundle.getString("description");
-			JSONObject properties = new JSONObject(Objects.requireNonNull(bundle.getString("properties")));
-			JSONArray relations = new JSONArray(Objects.requireNonNull(bundle.getString("relations")));
+			GraphItemBean bean = GraphItemBean.getInstance();
+			double hot = bean.getHot();
+			String title = bean.getTitle();
+			String description = bean.getDescription();
+			JSONObject properties = new JSONObject(bean.getProperties());
+			JSONArray relations = new JSONArray(bean.getRelations());
 			// 页面标题
 			toolbar.setTitle(title);
 			LinearLayout layout = findViewById(R.id.graph_detail_layout);
@@ -54,6 +54,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 			TextView entityTitle = new TextView(this);
 			entityTitle.setText(title);
 			entityTitle.setTextSize(40);
+			entityTitle.setTextColor(Color.DKGRAY);
 			entityTitle.getPaint().setFakeBoldText(true);
 			// 实体热度
 			TextView entityType = new TextView(this);
@@ -82,6 +83,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 				TextView propertyStart = new TextView(this);
 				propertyStart.setText("属性");
 				propertyStart.setTextSize(30);
+				propertyStart.setTextColor(Color.DKGRAY);
 				propertyStart.getPaint().setFakeBoldText(true);
 				LinearLayout.LayoutParams propertyParams = new LinearLayout.LayoutParams(
 					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -110,6 +112,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 				TextView relationStart = new TextView(this);
 				relationStart.setText("关系");
 				relationStart.setTextSize(30);
+				relationStart.setTextColor(Color.DKGRAY);
 				relationStart.getPaint().setFakeBoldText(true);
 				LinearLayout.LayoutParams relationParams = new LinearLayout.LayoutParams(
 					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -117,6 +120,7 @@ public class GraphDetailActivity extends AppCompatActivity {
 				relationStart.setLayoutParams(relationParams);
 				layout.addView(relationStart);
 				// 各关系值
+				GridLayout gridLayout = new GridLayout(this);
 				for(int i = 0; i < relations.length(); i++) {
 					// 获取所需信息
 					JSONObject currentObject = relations.getJSONObject(i);
@@ -125,40 +129,58 @@ public class GraphDetailActivity extends AppCompatActivity {
 					boolean forward = currentObject.getBoolean("forward");
 					// 关系文本框
 					TextView relationText = new TextView(this);
+					relationText.setMaxEms(10);
 					relationText.setText(relation);
 					relationText.setTextSize(20);
-					relationText.setGravity(Gravity.START);
 					relationText.setTextColor(Color.rgb(128, 128, 128));
+					relationText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+					GridLayout.LayoutParams relationTextParams = new GridLayout.LayoutParams(
+						GridLayout.spec(i, GridLayout.CENTER), GridLayout.spec(0, GridLayout.CENTER, 1));
+					relationTextParams.setMargins(0, 0, 0, 50);
+					relationText.setLayoutParams(relationTextParams);
+					gridLayout.addView(relationText);
 					// 图片箭头
 					ImageView imageView = new ImageView(this);
 					imageView.setImageResource(forward ? R.drawable.right: R.drawable.left);
 					imageView.setAdjustViewBounds(true);
-					imageView.setMaxHeight(40);
+					imageView.setMaxHeight(80);
+					GridLayout.LayoutParams imageViewParams = new GridLayout.LayoutParams(
+						GridLayout.spec(i, GridLayout.CENTER), GridLayout.spec(1, GridLayout.CENTER, 1));
+					imageViewParams.setMargins(0, 0, 0, 50);
+					imageView.setLayoutParams(imageViewParams);
+					gridLayout.addView(imageView);
 					// 标签文本框
-					TextView labelText = new TextView(this);
+					final TextView labelText = new TextView(this);
+					labelText.setMaxEms(10);
 					labelText.setText(label);
 					labelText.setTextSize(20);
-					labelText.setGravity(Gravity.END);
+					labelText.setTextColor(Color.DKGRAY);
+					labelText.getPaint().setAntiAlias(true);
 					labelText.getPaint().setFakeBoldText(true);
-					// 设置layout参数
-					RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-					relationText.setLayoutParams(params);
-					imageView.setLayoutParams(params);
-					labelText.setLayoutParams(params);
-					// 加入表格布局，然后加入界面
-					RelativeLayout subLayout = new RelativeLayout(this);
-					subLayout.addView(relationText);
-					subLayout.addView(labelText);
-					subLayout.addView(imageView);
-					LinearLayout.LayoutParams subLayoutParams = new LinearLayout.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-					subLayoutParams.setMargins(50, 20, 50, 0);
-					subLayout.setLayoutParams(subLayoutParams);
-					layout.addView(subLayout);
+					labelText.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+					labelText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+					GridLayout.LayoutParams labelTextParams = new GridLayout.LayoutParams(
+						GridLayout.spec(i, GridLayout.CENTER), GridLayout.spec(2, GridLayout.CENTER, 1));
+					labelTextParams.setMargins(0, 0, 0, 50);
+					labelText.setLayoutParams(labelTextParams);
+					gridLayout.addView(labelText);
+					// 监听标签点击事件
+					labelText.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View view) {
+							Intent request = new Intent();
+							request.putExtra("entity", labelText.getText());
+							setResult(1, request);
+							finish();
+						}
+					});
 				}
+				LinearLayout.LayoutParams gridLayoutParams = new LinearLayout.LayoutParams(
+					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+				gridLayoutParams.setMargins(50, 20, 50, 0);
+				gridLayout.setLayoutParams(gridLayoutParams);
+				layout.addView(gridLayout);
 			}
-
 		} catch (JSONException | NullPointerException e) {
 			e.printStackTrace();
 		}

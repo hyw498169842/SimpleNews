@@ -56,15 +56,13 @@ public class News2Json {
 
     public static void addNews(String filePath, News news) {
         String previous = readJson(filePath);
-        String newString = new String();
-        if(!previous.equals("")) {
-            newString = previous.substring(0, previous.length() - 1) + "," + JSON.toJSONString(news) + "]";
+        if(!previous.contains(JSON.toJSONString(news))) {
+            if(!previous.equals("")) {
+                save(filePath, "[" + JSON.toJSONString(news) + "," + previous.substring(1, previous.length()));
+            } else {
+                save(filePath, "[" + JSON.toJSONString(news) + "]");
+            }
         }
-        else {
-            newString = "[" + JSON.toJSONString(news) + "]";
-        }
-        System.out.println(newString);
-        save(filePath, newString);
     }
 
     static void save(String filePath, String saveString) {

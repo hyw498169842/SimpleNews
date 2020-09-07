@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -55,10 +54,10 @@ public class NewsLayout extends LinearLayout {
             textString = textString.substring(0, 50);
         }
         contentView.setText(textString);
-        LayoutParams contentparams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams contentParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         contentView.setTextColor(Color.rgb(0x6e,0x9c,0xf9));
-        contentparams.setMargins(15,10,15,10);
-        contentView.setLayoutParams(contentparams);
+        contentParams.setMargins(15,10,15,10);
+        contentView.setLayoutParams(contentParams);
         infoLayout.addView(contentView);
         contentView.setId(1);
 
@@ -94,7 +93,7 @@ public class NewsLayout extends LinearLayout {
             public void onClick(View view) {
                 // NewsDetailActivity
                 if(type.equals("news") || type.equals("paper")) {
-                    _this.setBackgroundColor(Color.rgb(0xf4,0xf6,0xf8));
+                    _this.setBackgroundColor(Color.rgb(0xe0,0xe0,0xe0));
                     News news = new News();
                     news.setTitle(titleString);
                     news.setContent(finalTextString);
@@ -110,15 +109,20 @@ public class NewsLayout extends LinearLayout {
                     bundle.putCharSequence("source", sourceString);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
-                }
-                else {
-                    setBackgroundColor(Color.rgb(0xFF,192,203));
+                } else if("You like this!".contentEquals(contentView.getText())) {
+                    setBackgroundColor(Color.rgb(255,255,255));
+                    if(type.equals("event")) {
+                        contentView.setText("Attend this event!");
+                    } else if(type.equals("points")) {
+                        contentView.setText("Check this point!");
+                    }
+                } else {
+                    setBackgroundColor(Color.rgb(0xFF, 192, 203));
                     contentView.setText("You like this!");
                 }
             }
         });
 
         setBackgroundColor(Color.rgb(255,255,255));
-        //System.out.println("21321321321321313232");
     }
 }
