@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -81,8 +84,79 @@ public class NewsFragment extends Fragment {
 		};
 
 		tabLayout.setupWithViewPager(viewPager);
-		tabLayout.addTab(tabLayout.newTab().setText("2331"));
 		viewPager.setAdapter(adapter);
+		/*RelativeLayout.LayoutParams tabParams = new RelativeLayout.LayoutParams(view.getWidth() - 200, ViewGroup.LayoutParams.WRAP_CONTENT);
+		tabParams.width
+		tabLayout.setLayoutParams(tabParams);*/
+
+		ImageView imageView = view.findViewById(R.id.more_icon);
+		imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent t = new Intent(getActivity(), ChipsActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putBoolean("All", false);
+				bundle.putBoolean("Event", false);
+				bundle.putBoolean("Points", false);
+				bundle.putBoolean("News", false);
+				bundle.putBoolean("Paper", false);
+
+				for(String each_title : titles) {
+					bundle.putBoolean(each_title, true);
+				}
+				t.putExtras(bundle);
+				getActivity().startActivityForResult(t,2);
+			}
+		});
 		return view;
+	}
+	void setTitles(boolean b1, boolean b2, boolean b3, boolean b4, boolean b5) {
+		fragments.clear();
+		titles.clear();
+		if(b1) {
+			fragments.add(new TypeFragment("all"));
+			titles.add("All");
+		}
+		if(b2) {
+			fragments.add(new TypeFragment("event"));
+			titles.add("Event");
+		}
+		if(b3) {
+			fragments.add(new TypeFragment("points"));
+			titles.add("Points");
+		}
+		if(b4) {
+			fragments.add(new TypeFragment("news"));
+			titles.add("News");
+		}
+		if(b5) {
+			fragments.add(new TypeFragment("paper"));
+			titles.add("Paper");
+		}
+		FragmentPagerAdapter adapter = new FragmentPagerAdapter(
+				getChildFragmentManager(),
+				FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+		) {
+			@NonNull
+			@Override
+			public Fragment getItem(int position) {
+				return fragments.get(position);
+			}
+
+			@Override
+			public int getCount() {
+				return fragments.size();
+			}
+
+			@Nullable
+			@Override
+			public CharSequence getPageTitle(int position) {
+				return titles.get(position);
+			}
+		};
+
+		tabLayout.setupWithViewPager(viewPager);
+		viewPager.setAdapter(adapter);
+
 	}
 }

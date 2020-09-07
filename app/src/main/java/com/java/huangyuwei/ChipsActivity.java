@@ -2,6 +2,8 @@ package com.java.huangyuwei;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,22 +25,31 @@ public class ChipsActivity extends AppCompatActivity {
         pointsChip = findViewById(R.id.chip_points);
         newsChip = findViewById(R.id.chip_news);
         paperChip = findViewById(R.id.chip_paper);
-        allChip.setChecked(bundle.getBoolean("all"));
-        eventChip.setChecked(bundle.getBoolean("event"));
-        pointsChip.setChecked(bundle.getBoolean("points"));
-        newsChip.setChecked(bundle.getBoolean("news"));
-        paperChip.setChecked(bundle.getBoolean("paper"));
+        allChip.setChecked(bundle.getBoolean("All"));
+        eventChip.setChecked(bundle.getBoolean("Event"));
+        pointsChip.setChecked(bundle.getBoolean("Points"));
+        newsChip.setChecked(bundle.getBoolean("News"));
+        paperChip.setChecked(bundle.getBoolean("Paper"));
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         Bundle bundle = new Bundle();
-        bundle.putBoolean("all", allChip.isChecked());
-        bundle.putBoolean("event", eventChip.isChecked());
-        bundle.putBoolean("points", pointsChip.isChecked());
-        bundle.putBoolean("news", newsChip.isChecked());
-        bundle.putBoolean("paper", paperChip.isChecked());
+        bundle.putBoolean("All", allChip.isChecked());
+        bundle.putBoolean("Event", eventChip.isChecked());
+        bundle.putBoolean("Points", pointsChip.isChecked());
+        bundle.putBoolean("News", newsChip.isChecked());
+        bundle.putBoolean("Paper", paperChip.isChecked());
         Intent intent = new Intent();
+        intent.putExtras(bundle);
+        setResult(2,intent);
         super.onBackPressed();
     }
 }

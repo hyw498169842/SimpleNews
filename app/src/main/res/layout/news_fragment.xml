@@ -22,28 +22,31 @@
             app:subtitleTextColor="#000000"
             app:navigationIcon="@mipmap/sbutton"
             />
-
     </com.google.android.material.appbar.AppBarLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal">
         <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/news_tab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/more_icon"
             app:tabMode="scrollable"
             android:background="@color/design_default_color_background">
         </com.google.android.material.tabs.TabLayout>
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:maxHeight="50dp"
             android:src="@drawable/more_button"
-            android:id="@+id/more_icon"/>
+            android:id="@+id/more_icon" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/news_pager"

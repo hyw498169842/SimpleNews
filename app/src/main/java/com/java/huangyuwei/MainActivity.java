@@ -75,5 +75,13 @@ public class MainActivity extends AppCompatActivity {
 			SearchView searchView = findViewById(R.id.search_view);
 			searchView.setQuery(data.getStringExtra("entity"), true);
 		}
+		else if(requestCode == 2 && resultCode == 2) {
+			boolean b1 = data.getBooleanExtra("All", false);
+			boolean b2 = data.getBooleanExtra("Event", false);
+			boolean b3 = data.getBooleanExtra("Points", false);
+			boolean b4 = data.getBooleanExtra("News", false);
+			boolean b5 = data.getBooleanExtra("Paper", false);
+			newsFragment.setTitles(b1, b2, b3, b4, b5);
+		}
 	}
 }
