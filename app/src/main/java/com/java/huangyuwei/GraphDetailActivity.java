@@ -3,32 +3,26 @@ package com.java.huangyuwei;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
+
+import com.java.huangyuwei.covid.bean.GraphItemBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
-import java.util.Objects;
 
 public class GraphDetailActivity extends AppCompatActivity {
 	@Override
@@ -46,12 +40,12 @@ public class GraphDetailActivity extends AppCompatActivity {
 		});
 
 		try {
-			Bundle bundle = getIntent().getExtras();
-			double hot = Objects.requireNonNull(bundle).getDouble("hot");
-			String title = bundle.getString("title");
-			String description = bundle.getString("description");
-			JSONObject properties = new JSONObject(Objects.requireNonNull(bundle.getString("properties")));
-			JSONArray relations = new JSONArray(Objects.requireNonNull(bundle.getString("relations")));
+			GraphItemBean bean = GraphItemBean.getInstance();
+			double hot = bean.getHot();
+			String title = bean.getTitle();
+			String description = bean.getDescription();
+			JSONObject properties = new JSONObject(bean.getProperties());
+			JSONArray relations = new JSONArray(bean.getRelations());
 			// 页面标题
 			toolbar.setTitle(title);
 			LinearLayout layout = findViewById(R.id.graph_detail_layout);

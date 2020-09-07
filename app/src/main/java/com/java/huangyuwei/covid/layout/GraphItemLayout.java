@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.java.huangyuwei.GraphDetailActivity;
 import com.java.huangyuwei.MainActivity;
+import com.java.huangyuwei.covid.bean.GraphItemBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,13 +59,12 @@ public class GraphItemLayout extends LinearLayout {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(context, GraphDetailActivity.class);
-				Bundle bundle = new Bundle();
-				bundle.putDouble("hot", hot);
-				bundle.putCharSequence("title", entity);
-				bundle.putCharSequence("description", description);
-				bundle.putCharSequence("properties", properties.toString());
-				bundle.putCharSequence("relations", relations.toString());
-				intent.putExtras(bundle);
+				GraphItemBean bean = GraphItemBean.getInstance();
+				bean.setHot(hot);
+				bean.setTitle(entity);
+				bean.setDescription(description);
+				bean.setProperties(properties.toString());
+				bean.setRelations(relations.toString());
 				((MainActivity) context).startActivityForResult(intent, 1);
 			}
 		});
