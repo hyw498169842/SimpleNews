@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ResearcherDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".HistoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -19,16 +19,15 @@ import androidx.fragment.app.Fragment;
 
 import com.java.huangyuwei.R;
 import com.java.huangyuwei.covid.layout.GraphItemLayout;
+import com.java.huangyuwei.covid.util.FileContentReader;
 import com.java.huangyuwei.covid.util.UrlContentReader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -42,18 +41,6 @@ public class CovidGraphFragment extends Fragment {
 
 	private final int RANDOM_ITEM_COUNT = 10;
 	private final String url = "https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery?entity=";
-
-	private String readJson() throws IOException {
-		InputStream stream = getResources().openRawResource(R.raw.entity_list);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-		StringBuilder builder = new StringBuilder();
-		for(String buffer = reader.readLine(); buffer != null; ) {
-			builder.append(buffer);
-			builder.append("\n");
-			buffer = reader.readLine();
-		}
-		return builder.toString();
-	}
 
 	@Override
 	public void onAttach(@NonNull Context context) {
@@ -77,12 +64,12 @@ public class CovidGraphFragment extends Fragment {
 					ArrayList<JSONObject> dataList = (ArrayList<JSONObject>) message.obj;
 					LinearLayout layout = savedView.findViewById(R.id.graph_linear_layout);
 					layout.removeAllViews();
+					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+					params.setMargins(10, 10 , 10 , 10);
 					for(JSONObject data: dataList) {
 						try {
 							GraphItemLayout newLayout = new GraphItemLayout(savedActivity, data);
-							LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-								LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-							params.setMargins(10, 10 , 10 , 10);
 							newLayout.setLayoutParams(params);
 							layout.addView(newLayout);
 						} catch (JSONException e) {
@@ -101,7 +88,8 @@ public class CovidGraphFragment extends Fragment {
 		});
 
 		try {
-			JSONArray jsonArray = new JSONArray(readJson());
+			InputStream in = getResources().openRawResource(R.raw.entity_list);
+			JSONArray jsonArray = new JSONArray(FileContentReader.getContent(in));
 			for(int i = 0; i < jsonArray.length(); i++) {
 				entities.add(jsonArray.getString(i));
 			}

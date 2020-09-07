@@ -29,13 +29,12 @@ public class GraphDetailActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph_item);
-		Toolbar toolbar = findViewById(R.id.toolbar_g);
 
-		final GraphDetailActivity _this = this;
+		Toolbar toolbar = findViewById(R.id.toolbar_g);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				_this.finish();
+				finish();
 			}
 		});
 
