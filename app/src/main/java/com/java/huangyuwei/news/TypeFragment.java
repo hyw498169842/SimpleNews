@@ -67,8 +67,10 @@ public class TypeFragment extends Fragment {
                 String[][] newsList = News2Json.getNewsList(getContext().getFilesDir().getPath());
                 if(msg.what == 2 && newsList != null) {
                     s = newsList;
+                    layout.removeAllViews();
                 }
-                for(int i = 0; i < s.length; i++) {
+                int length = s == null ? 0 : s.length;
+                for(int i = 0; i < length; i++) {
                     NewsLayout newsLayout = new NewsLayout(_this.getContext(), s[i][0], s[i][1], s[i][2], s[i][3], s[i][4]);
                     boolean read = false;
                     if(newsList != null) {
