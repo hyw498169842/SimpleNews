@@ -33,14 +33,9 @@ public class SearchActivity extends AppCompatActivity {
         final Handler mainThreadHandler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
-                if(msg.what == 1) {
-                    layout.removeAllViews();
-                }
+                layout.removeAllViews();
                 String[][] s = (String[][])msg.obj;
                 String[][] newsList = News2Json.getNewsList(getFilesDir().getPath());
-                if(msg.what == 2 && newsList != null) {
-                    s = newsList;
-                }
                 if(s.length == 0) {
                     TextView t = new TextView(_this);
                     t.setText("很抱歉，没有找到相关的内容，请换个关键词再试吧。");
