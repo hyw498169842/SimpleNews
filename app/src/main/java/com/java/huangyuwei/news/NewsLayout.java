@@ -51,7 +51,7 @@ public class NewsLayout extends LinearLayout {
             }
         }
         if(textString.length() > 50) {
-            textString = textString.substring(0, 50);
+            textString = textString.substring(0, 50) + "...";
         }
         contentView.setText(textString);
         LayoutParams contentParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
