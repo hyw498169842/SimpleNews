@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class UserFragment extends Fragment {
 			@Override
 			public void onClick(View view) {
 				News2Json.delete(getContext().getFilesDir().getPath());
+				Toast.makeText(getActivity(), "清除成功", Toast.LENGTH_SHORT).show();
 			}
 		});
 		historyView.setOnClickListener(new View.OnClickListener() {
