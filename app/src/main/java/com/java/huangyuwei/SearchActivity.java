@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
                 String[][] newsList = News2Json.getNewsList(getFilesDir().getPath());
                 if(s.length == 0) {
                     TextView t = new TextView(_this);
-                    t.setText("很抱歉，没有找到相关的内容，请换个关键词再试吧。");
+                    t.setText("很抱歉，没有找到相关内容，请换个关键词再试吧。");
                     t.setTextColor(Color.rgb(0,0,0));
                     t.setTextSize(15);
                     LinearLayout.LayoutParams newsParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
