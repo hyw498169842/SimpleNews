@@ -11,7 +11,6 @@ public class RefreshServer extends Server {
     public void run() {
         super.run();
         JsonParser jParser = new JsonParser();
-        page++;
         String[][] newsList = new String[0][];
         try {
             newsList = jParser.getNNews(1, super.type);
@@ -27,6 +26,6 @@ public class RefreshServer extends Server {
         super.mainThreadHandler.sendMessage(message);
     }
     public RefreshServer(Handler mHandler, String _type) {
-        super(mHandler, _type);
+        super(mHandler, _type, 1);
     }
 }

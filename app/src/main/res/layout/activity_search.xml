@@ -12,10 +12,14 @@
         android:iconifiedByDefault="false"
         android:layout_margin="10dp"
         android:focusable="true"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#F4F6F8"
         android:id="@+id/search_layout"/>
+    </ScrollView>
 </LinearLayout>

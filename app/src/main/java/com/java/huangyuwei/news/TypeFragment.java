@@ -28,8 +28,8 @@ import com.java.huangyuwei.news.newsparser.RefreshServer;
 import com.java.huangyuwei.news.newsparser.Server;
 import com.java.huangyuwei.news.newssaver.News2Json;
 
-
 public class TypeFragment extends Fragment {
+    int page;
     String type;
     public TypeFragment(String _type) {
         super();
@@ -112,15 +112,16 @@ public class TypeFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Server refreshServer = new Server(mainThreadHandler, type);
+                        page += 1;
+                        Server refreshServer = new Server(mainThreadHandler, type, page);
                         refreshServer.start();
 
                     }
                 },100);
             }
         });
-
-        Server s = new Server(mainThreadHandler, type);
+        page = 1;
+        Server s = new Server(mainThreadHandler, type, page);
         s.start();
         return view;
     }

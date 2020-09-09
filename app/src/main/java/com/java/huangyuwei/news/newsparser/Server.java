@@ -6,14 +6,13 @@ import android.os.Message;
 import java.io.IOException;
 
 public class Server extends Thread {
-    static int page = 0;
+    private int page;
     protected String type;
     protected Handler mainThreadHandler;
     @Override
     public void run() {
         super.run();
         JsonParser jParser = new JsonParser();
-        page++;
         String[][] newsList = new String[0][];
         try {
             newsList = jParser.getNNews(page, type);
@@ -28,9 +27,10 @@ public class Server extends Thread {
         message.what = 0;
         mainThreadHandler.sendMessage(message);
     }
-    public Server(Handler mHandler, String _type) {
+    public Server(Handler mHandler, String _type, int p) {
         mainThreadHandler = mHandler;
         type = _type;
+        page = p;
     }
 }
 
