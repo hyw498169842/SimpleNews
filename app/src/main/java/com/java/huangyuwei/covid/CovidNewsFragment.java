@@ -45,8 +45,8 @@ public class CovidNewsFragment extends Fragment {
 		View view = inflater.inflate(R.layout.covid_news_fragment, container, false);
 
 		final TextView keywordText = view.findViewById(R.id.keywords);
-		keywordText.setTextSize(15);
-		keywordText.setTextColor(Color.rgb(0xA0, 0x50, 0xE0));
+		keywordText.setTextSize(20);
+		keywordText.setTextColor(Color.rgb(0x90, 0x50, 0xE0));
 		keywordText.getPaint().setFakeBoldText(true);
 		final LinearLayout layout = view.findViewById(R.id.covid_news_layout);
 
@@ -64,7 +64,7 @@ public class CovidNewsFragment extends Fragment {
 
 					keywordText.setText("关键词：");
 					JSONArray keywordArray = target.getJSONArray("keywords");
-					for(int i = 0; i < keywordArray.length(); i++) {
+					for(int i = 0; i < 3; i++) {
 						keywordText.append(keywordArray.getString(i) + " ");
 					}
 
