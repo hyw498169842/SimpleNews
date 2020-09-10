@@ -25,7 +25,6 @@
         app:layout_constraintRight_toLeftOf="@id/search_view"
         android:background="@drawable/button_shape"
         android:layout_margin="10dp"
-        android:textColor="#505050"
         android:text="手气不错" />
 
     <ScrollView
