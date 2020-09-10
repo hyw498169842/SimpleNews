@@ -35,13 +35,13 @@ public class ChipsActivity extends AppCompatActivity {
         newsChip.setChecked(bundle.getBoolean("News"));
         paperChip.setChecked(bundle.getBoolean("Paper"));
         if(!allChip.isChecked()) {
-            allChip.startShakeAnimation(0.8f, 1.1f, 0.3f,500);
+            allChip.startShakeAnimation(0.8f, 1.1f, 0.3f,100);
         }
         if(!eventChip.isChecked()) {
-            eventChip.startShakeAnimation(0.8f, 1.1f, 0.3f,500);
+            eventChip.startShakeAnimation(0.8f, 1.1f, 0.3f,100);
         }
         if(!pointsChip.isChecked()) {
-            pointsChip.startShakeAnimation(0.9f, 1.1f, 0.3f,500);
+            pointsChip.startShakeAnimation(0.9f, 1.1f, 0.3f,100);
         }
         if(!newsChip.isChecked()) {
             newsChip.startShakeAnimation(0.9f, 1.1f, 0.3f,100);
@@ -53,7 +53,7 @@ public class ChipsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!allChip.isChecked()) {
-                    allChip.startShakeAnimation(0.8f, 1.1f, 0.3f,500);
+                    allChip.startShakeAnimation(0.8f, 1.1f, 0.3f,100);
                 }
             }
         });
@@ -61,7 +61,7 @@ public class ChipsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!eventChip.isChecked()) {
-                    eventChip.startShakeAnimation(0.8f, 1.1f, 0.3f,500);
+                    eventChip.startShakeAnimation(0.8f, 1.1f, 0.3f,100);
                 }
             }
         });
@@ -69,7 +69,7 @@ public class ChipsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!pointsChip.isChecked()) {
-                    pointsChip.startShakeAnimation(0.9f, 1.1f, 0.3f,500);
+                    pointsChip.startShakeAnimation(0.9f, 1.1f, 0.3f,100);
                 }
             }
         });
