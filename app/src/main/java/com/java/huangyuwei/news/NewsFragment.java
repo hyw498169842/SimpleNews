@@ -2,6 +2,7 @@ package com.java.huangyuwei.news;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,11 @@ public class NewsFragment extends Fragment {
 			@Override
 			public int getItemPosition(@NonNull Object object) {
 				return POSITION_NONE;
+			}
+
+			@Override
+			public Parcelable saveState() {
+				return null;
 			}
 		};
 
