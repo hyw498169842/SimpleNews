@@ -1,8 +1,9 @@
-package com.java.huangyuwei;
+package com.java.huangyuwei.user;
 
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.java.huangyuwei.R;
 import com.java.huangyuwei.news.NewsLayout;
 import com.java.huangyuwei.news.newssaver.News2Json;
 

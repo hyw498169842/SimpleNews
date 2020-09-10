@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.java.huangyuwei.ResearcherDetailActivity;
+import com.java.huangyuwei.covid.ResearcherDetailActivity;
 import com.java.huangyuwei.covid.bean.ResearcherItemBean;
 
 import org.json.JSONException;

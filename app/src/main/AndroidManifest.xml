@@ -14,22 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SearchActivity"
+            android:name=".news.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".HistoryActivity"
+            android:name=".user.HistoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".NewsDetailActivity"
+            android:name=".news.NewsDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".GraphDetailActivity"
+            android:name=".covid.GraphDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ChipsActivity"
+            android:name=".news.ChipsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ResearcherDetailActivity"
+            android:name=".covid.ResearcherDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -32,7 +32,7 @@
         app:chipSpacingVertical="20sp">
 
 
-        <com.google.android.material.chip.Chip
+        <com.java.huangyuwei.news.ChipView
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:id="@+id/chip_all"
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
             android:textColor="#000000"
             android:checked="true"/>
 
-        <com.google.android.material.chip.Chip
+        <com.java.huangyuwei.news.ChipView
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:id="@+id/chip_event"
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:textColor="#000000"
             android:checked="true"/>
 
-        <com.google.android.material.chip.Chip
+        <com.java.huangyuwei.news.ChipView
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:id="@+id/chip_points"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
             android:textColor="#000000"
             android:checked="true"/>
 
-        <com.google.android.material.chip.Chip
+        <com.java.huangyuwei.news.ChipView
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:id="@+id/chip_news"
             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             android:textColor="#000000"
             android:checked="true"/>
 
-        <com.google.android.material.chip.Chip
+        <com.java.huangyuwei.news.ChipView
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:id="@+id/chip_paper"
             android:layout_width="wrap_content"

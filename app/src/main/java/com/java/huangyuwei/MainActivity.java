@@ -16,6 +16,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.java.huangyuwei.covid.CovidFragment;
+import com.java.huangyuwei.news.NewsFragment;
+import com.java.huangyuwei.user.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 	private NewsFragment newsFragment;

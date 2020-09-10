@@ -1,4 +1,4 @@
-package com.java.huangyuwei;
+package com.java.huangyuwei.covid;
 
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.java.huangyuwei.R;
 import com.java.huangyuwei.covid.bean.ResearcherItemBean;
 
 import org.json.JSONArray;

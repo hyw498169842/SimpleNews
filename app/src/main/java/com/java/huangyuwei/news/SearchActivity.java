@@ -1,17 +1,14 @@
-package com.java.huangyuwei;
+package com.java.huangyuwei.news;
 
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.java.huangyuwei.news.NewsLayout;
+import com.java.huangyuwei.R;
 import com.java.huangyuwei.news.newsparser.Searcher;
 import com.java.huangyuwei.news.newssaver.News2Json;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.os.Handler;
 import android.os.Message;

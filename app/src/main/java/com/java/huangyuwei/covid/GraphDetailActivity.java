@@ -1,4 +1,4 @@
-package com.java.huangyuwei;
+package com.java.huangyuwei.covid;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.java.huangyuwei.R;
 import com.java.huangyuwei.covid.bean.GraphItemBean;
 
 import org.json.JSONArray;

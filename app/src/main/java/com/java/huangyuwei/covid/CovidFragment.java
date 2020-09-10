@@ -1,4 +1,4 @@
-package com.java.huangyuwei;
+package com.java.huangyuwei.covid;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
+import com.java.huangyuwei.R;
 import com.java.huangyuwei.covid.CovidDataFragment;
 import com.java.huangyuwei.covid.CovidGraphFragment;
 import com.java.huangyuwei.covid.CovidNewsFragment;

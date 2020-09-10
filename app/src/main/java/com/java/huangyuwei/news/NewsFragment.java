@@ -1,4 +1,4 @@
-package com.java.huangyuwei;
+package com.java.huangyuwei.news;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-import com.java.huangyuwei.news.TypeFragment;
+import com.java.huangyuwei.R;
 
 public class NewsFragment extends Fragment {
 	private ArrayList<Fragment> fragments;
@@ -110,7 +107,7 @@ public class NewsFragment extends Fragment {
 		});
 		return view;
 	}
-	void setTitles(boolean b1, boolean b2, boolean b3, boolean b4, boolean b5) {
+	public void setTitles(boolean b1, boolean b2, boolean b3, boolean b4, boolean b5) {
 		fragments.clear();
 		titles.clear();
 		if(b1) {

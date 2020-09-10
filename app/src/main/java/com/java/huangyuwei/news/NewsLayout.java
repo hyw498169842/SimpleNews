@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.java.huangyuwei.NewsDetailActivity;
 import com.java.huangyuwei.R;
 import com.java.huangyuwei.news.newssaver.News;
 import com.java.huangyuwei.news.newssaver.News2Json;
