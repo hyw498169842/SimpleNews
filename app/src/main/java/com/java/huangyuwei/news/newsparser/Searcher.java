@@ -10,7 +10,7 @@ public class Searcher extends Thread {
     public void run() {
         super.run();
         JsonParser jsonParser = new JsonParser();
-        String[][] newsList = jsonParser.getKeyNews(keyWord, 8, 15,100);
+        String[][] newsList = jsonParser.getKeyNews(keyWord, 20, 6,1000);
         int len = 0;
         for(; len < newsList.length; len++) {
             if(newsList[len][0] == null) {

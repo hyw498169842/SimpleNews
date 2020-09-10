@@ -1,5 +1,7 @@
 package com.java.huangyuwei.news;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +33,7 @@ import com.java.huangyuwei.news.newssaver.News2Json;
 public class TypeFragment extends Fragment {
     int page;
     String type;
+    private Activity savedActivity;
     public TypeFragment(String _type) {
         super();
         type = _type;
@@ -43,8 +46,8 @@ public class TypeFragment extends Fragment {
         // https://github.com/tangxianqiang/LightRefresh
         FrameLayout rootView = view.findViewById(R.id.fl_root);
         final BounceLayout bounceLayout = view.findViewById(R.id.bl);
-        bounceLayout.setHeaderView(new DefaultHeader(getContext()),rootView);//if HeaderView is null,it just bounce.
-        bounceLayout.setFooterView(new DefaultFooter(getContext()),rootView);
+        bounceLayout.setHeaderView(new DefaultHeader(savedActivity),rootView);//if HeaderView is null,it just bounce.
+        bounceLayout.setFooterView(new DefaultFooter(savedActivity),rootView);
         ScrollView scrollView = view.findViewById(R.id.scroll_view);
         bounceLayout.setBounceHandler(new NormalBounceHandler(), scrollView);
         bounceLayout.setEventForwardingHelper(new EventForwardingHelper() {
@@ -64,14 +67,14 @@ public class TypeFragment extends Fragment {
                     layout.removeAllViews();
                 }
                 String[][] s = (String[][])msg.obj;
-                String[][] newsList = News2Json.getNewsList(getContext().getFilesDir().getPath());
+                String[][] newsList = News2Json.getNewsList(savedActivity.getFilesDir().getPath());
                 if(msg.what == 2 && newsList != null) {
                     s = newsList;
                     layout.removeAllViews();
                 }
                 int length = s == null ? 0 : s.length;
                 for(int i = 0; i < length; i++) {
-                    NewsLayout newsLayout = new NewsLayout(_this.getContext(), s[i][0], s[i][1], s[i][2], s[i][3], s[i][4]);
+                    NewsLayout newsLayout = new NewsLayout(savedActivity, s[i][0], s[i][1], s[i][2], s[i][3], s[i][4]);
                     boolean read = false;
                     if(newsList != null) {
                         for (int j = 0; j < newsList.length; j++) {
@@ -126,5 +129,10 @@ public class TypeFragment extends Fragment {
         Server s = new Server(mainThreadHandler, type, page);
         s.start();
         return view;
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        savedActivity = (Activity)context;
     }
 }
