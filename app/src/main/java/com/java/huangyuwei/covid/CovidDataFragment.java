@@ -132,7 +132,7 @@ public class CovidDataFragment extends Fragment {
 				try {
 					setCurrentLocation(0, 0, 0);
 					drawChartOfCurrentState();
-				} catch(NullPointerException e) {
+				} catch(IndexOutOfBoundsException e) {
 					e.printStackTrace();
 				}
 			}
