@@ -129,8 +129,12 @@ public class CovidDataFragment extends Fragment {
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		if(savedView != null) {
 			if(!chartInitialized) {
-				setCurrentLocation(0, 0, 0);
-				drawChartOfCurrentState();
+				try {
+					setCurrentLocation(0, 0, 0);
+					drawChartOfCurrentState();
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+				}
 			}
 			return savedView;
 		}
