@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -58,10 +59,7 @@ public class NewsFragment extends Fragment {
 		tabLayout = view.findViewById(R.id.news_tab);
 		viewPager = view.findViewById(R.id.news_pager);
 
-		FragmentPagerAdapter adapter = new FragmentPagerAdapter(
-				getChildFragmentManager(),
-				FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-		) {
+		FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getChildFragmentManager()) {
 			@NonNull
 			@Override
 			public Fragment getItem(int position) {
@@ -77,6 +75,11 @@ public class NewsFragment extends Fragment {
 			@Override
 			public CharSequence getPageTitle(int position) {
 				return titles.get(position);
+			}
+
+			@Override
+			public int getItemPosition(@NonNull Object object) {
+				return POSITION_NONE;
 			}
 		};
 
@@ -130,30 +133,6 @@ public class NewsFragment extends Fragment {
 			fragments.add(new TypeFragment("paper"));
 			titles.add("Paper");
 		}
-		FragmentPagerAdapter adapter = new FragmentPagerAdapter(
-				getChildFragmentManager(),
-				FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-		) {
-			@NonNull
-			@Override
-			public Fragment getItem(int position) {
-				return fragments.get(position);
-			}
-
-			@Override
-			public int getCount() {
-				return fragments.size();
-			}
-
-			@Nullable
-			@Override
-			public CharSequence getPageTitle(int position) {
-				return titles.get(position);
-			}
-		};
-
-		tabLayout.setupWithViewPager(viewPager);
-		viewPager.setAdapter(adapter);
-
+		viewPager.getAdapter().notifyDataSetChanged();
 	}
 }
